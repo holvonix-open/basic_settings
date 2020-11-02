@@ -7,7 +7,7 @@ A basic model for individual settings based on a Hive box and MobX observables a
 ```
 https://github.com/holvonix-open/basic-settings
 
-Copyright 2020 Holvonix LLC
+Copyright (c) 2020 Holvonix LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
