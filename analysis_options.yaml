@@ -1,7 +1,0 @@
-include: package:pedantic/analysis_options.yaml
-
-analyzer:
-  exclude: []
-  errors:
-    unused_import: error
-    missing_required_param: error

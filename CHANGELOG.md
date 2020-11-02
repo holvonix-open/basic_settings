@@ -1,3 +1,3 @@
-## [0.1.0] - Nov 2, 2020
+## [0.1.1] - Nov 2, 2020
 
 * Initial open-sourced version

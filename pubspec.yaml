@@ -1,7 +1,6 @@
 name: basic_settings
 description: Model for individual settings based on a Hive box and MobX observables, and associated UI
-version: 0.1.0
-author: Holvonix LLC
+version: 0.1.1
 homepage: https://github.com/holvonix-open/basic_settings
 
 environment:
@@ -13,6 +12,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  meta: ^1.2.3
 
   # Standard libraries
   logging: ^0.11.4
@@ -30,9 +30,8 @@ dev_dependencies:
   test: any
   flutter_test:
     sdk: flutter
-  meta: ^1.2.3
   matcher: ^0.12.9
-  pedantic: ^1.8.0
+  pedantic: ^1.9.0
   build_runner: ^1.10.2
 
   # Widely used community packages
