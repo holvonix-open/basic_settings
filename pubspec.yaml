@@ -1,11 +1,11 @@
 name: basic_settings
 description: Model for individual settings based on a Hive box and MobX observables, and associated UI
-version: 0.1.1
+version: 1.0.0
 homepage: https://github.com/holvonix-open/basic_settings
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0"
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -15,13 +15,13 @@ dependencies:
   meta: ^1.2.3
 
   # Standard libraries
-  logging: ^0.11.4
+  logging: ^1.0.1
 
   # Widely used community plugins
-  flutter_mobx: ^1.1.0+2
-  hive: ^1.4.4
-  mobx: ^1.2.1+2
-  provider: ^4.3.2
+  flutter_mobx: ^2.0.2
+  hive: ^2.0.4
+  mobx: ^2.0.4
+  provider: ^6.0.0
 
 dev_dependencies:
   # Core and Google packages
@@ -30,12 +30,12 @@ dev_dependencies:
   test: any
   flutter_test:
     sdk: flutter
-  matcher: ^0.12.9
-  pedantic: ^1.9.0
-  build_runner: ^1.10.2
+  matcher: ^0.12.10
+  pedantic: ^1.11.1
+  build_runner: ^2.1.2
 
   # Widely used community packages
-  mobx_codegen: ^1.1.0+1
+  mobx_codegen: ^2.0.3
 
 
 # For information on the generic Dart part of this file, see the

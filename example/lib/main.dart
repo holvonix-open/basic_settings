@@ -6,7 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class Settings {
   static Future<Settings> load(HiveInterface hive, String name) async {
-    return Settings._(await hive.openBox(AutofillHints.countryName));
+    return Settings._(await hive.openBox('ex1'));
   }
 
   final Box _box;
@@ -33,7 +33,7 @@ class Settings {
 class SettingsPage extends StatelessWidget {
   final Settings settings;
 
-  const SettingsPage({Key key, @required this.settings}) : super(key: key);
+  const SettingsPage({Key? key, required this.settings}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final Settings settings;
 
-  const MyApp({Key key, this.settings}) : super(key: key);
+  const MyApp({Key? key, required this.settings}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

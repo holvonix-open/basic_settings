@@ -14,28 +14,30 @@ final basic_settingsLogger = Logger('basic_settings');
 @sealed
 class Setting<T, U> extends _Setting<T, U> with _$Setting<T, U> {
   Setting(Box box, String key,
-      {T defaultValue,
-      @required U Function(T) store,
-      @required T Function(U) load})
+      {required T defaultValue,
+      required U Function(T) store,
+      required T Function(U) load})
       : super(box, key, defaultValue: defaultValue, store: store, load: load);
 
-  static Setting<T, T> simple<T>(Box box, String key, {T defaultValue}) =>
+  static Setting<T, T> simple<T>(Box box, String key,
+          {required T defaultValue}) =>
       Setting<T, T>(box, key,
           defaultValue: defaultValue, store: (t) => t, load: (u) => u);
 
   static Setting<bool, bool> boolValue(Box box, String key,
-          {bool defaultValue}) =>
+          {required bool defaultValue}) =>
       simple<bool>(box, key, defaultValue: defaultValue);
 
   static Setting<String, String> stringValue(Box box, String key,
-          {String defaultValue}) =>
+          {required String defaultValue}) =>
       simple<String>(box, key, defaultValue: defaultValue);
 
-  static Setting<int, int> intValue(Box box, String key, {int defaultValue}) =>
+  static Setting<int, int> intValue(Box box, String key,
+          {required int defaultValue}) =>
       simple<int>(box, key, defaultValue: defaultValue);
 
   static Setting<T, int> enumValue<T>(Box box, String key,
-          {@required List<T> values, T defaultValue}) =>
+          {required List<T> values, required T defaultValue}) =>
       Setting<T, int>(box, key,
           defaultValue: defaultValue,
           store: (dynamic t) => t.index,
@@ -53,7 +55,7 @@ abstract class _Setting<T, U> with Store {
   final T Function(U) load;
   final U Function(T) store;
   _Setting(this._box, this.key,
-      {T defaultValue, @required this.store, @required this.load})
+      {required T defaultValue, required this.store, required this.load})
       : stream = _box.watch(key: key).asObservable(
               initialValue: BoxEvent(
                 key,
@@ -63,7 +65,7 @@ abstract class _Setting<T, U> with Store {
             ) {
     _cur = load(_box.get(key, defaultValue: store(defaultValue)));
     stream.listen((event) {
-      basic_settingsLogger?.fine(() =>
+      basic_settingsLogger.fine(() =>
           'Stream listen $key K: ${event.key} V: ${event.value} D: ${event.deleted}, prior: $_cur');
       _cur = load(event.value ?? store(defaultValue));
     });
@@ -72,11 +74,11 @@ abstract class _Setting<T, U> with Store {
   final Stream<BoxEvent> stream;
 
   @observable
-  T _cur;
+  T? _cur;
 
   T get value {
-    basic_settingsLogger?.finest(() => 'Loading $key => $_cur');
-    return _cur;
+    basic_settingsLogger.finest(() => 'Loading $key => $_cur');
+    return _cur!;
   }
 
   set value(T newValue) {
@@ -84,7 +86,7 @@ abstract class _Setting<T, U> with Store {
   }
 
   Future<void> setValue(T newValue) async {
-    basic_settingsLogger?.fine(() => 'Setting $key => $newValue');
+    basic_settingsLogger.fine(() => 'Setting $key => $newValue');
     return _box.put(key, store(newValue));
   }
 }
@@ -99,6 +101,6 @@ extension ThemeSettingMode on ThemeSetting {
   };
 
   ThemeMode get themeMode {
-    return _map[this];
+    return _map[this]!;
   }
 }

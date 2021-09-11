@@ -12,13 +12,13 @@ mixin _$Setting<T, U> on _Setting<T, U>, Store {
   final _$_curAtom = Atom(name: '_Setting._cur');
 
   @override
-  T get _cur {
+  T? get _cur {
     _$_curAtom.reportRead();
     return super._cur;
   }
 
   @override
-  set _cur(T value) {
+  set _cur(T? value) {
     _$_curAtom.reportWrite(value, super._cur, () {
       super._cur = value;
     });

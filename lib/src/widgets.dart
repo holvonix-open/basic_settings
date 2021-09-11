@@ -8,10 +8,11 @@ class BoolSetting extends StatelessWidget {
     this.setting,
     this.name, {
     this.description,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
-  final String name, description;
+  final String name;
+  final String? description;
   final Setting<bool, dynamic> setting;
 
   @override
@@ -19,7 +20,7 @@ class BoolSetting extends StatelessWidget {
     return Observer(
       builder: (ctx) => SwitchListTile.adaptive(
           title: Text(name),
-          subtitle: description != null ? Text(description) : null,
+          subtitle: description != null ? Text(description!) : null,
           value: setting.value,
           onChanged: (val) {
             setting.value = val;
@@ -32,7 +33,7 @@ class CheckboxSetting extends StatelessWidget {
   const CheckboxSetting(
     this.setting,
     this.name, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   final String name;
@@ -48,7 +49,7 @@ class CheckboxSetting extends StatelessWidget {
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   value: setting.value,
                   onChanged: (val) {
-                    setting.value = val;
+                    setting.value = val!;
                   },
                 ),
                 Text(name)
@@ -61,9 +62,9 @@ class RangeSetting extends StatelessWidget {
   const RangeSetting(
     this.setting,
     this.name, {
-    Key key,
-    @required this.min,
-    @required this.max,
+    Key? key,
+    required this.min,
+    required this.max,
   }) : super(key: key);
 
   final Setting<double, dynamic> setting;
@@ -101,15 +102,16 @@ class EnumSetting<T> extends StatelessWidget {
   const EnumSetting(
     this.setting,
     this.name, {
-    Key key,
+    Key? key,
     this.description,
-    @required this.values,
-    @required this.names,
+    required this.values,
+    required this.names,
   })  : assert(values.length == names.length),
         super(key: key);
 
   final Setting<T, dynamic> setting;
-  final String name, description;
+  final String name;
+  final String? description;
   final List<T> values;
   final List<String> names;
 
@@ -120,16 +122,16 @@ class EnumSetting<T> extends StatelessWidget {
         children: [
           ListTile(
             title: Text(name),
-            subtitle: description != null ? Text(description) : null,
+            subtitle: description != null ? Text(description!) : null,
           ),
           ...(List.generate(
             values.length,
-            (index) => RadioListTile(
+            (index) => RadioListTile<T>(
               title: Text(names[index]),
               groupValue: setting.value,
               value: values[index],
               onChanged: (v) {
-                setting.value = v;
+                setting.value = v!;
               },
             ),
           )),
