@@ -1,4 +1,4 @@
-## [1.0.0] - Sep 11, 2021
+## [1.0.0+1] - Sep 11, 2021
 
 * Upgrade to Flutter 2 and null safety
 
